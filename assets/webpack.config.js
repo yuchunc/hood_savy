@@ -13,6 +13,7 @@ module.exports = (env, options) => ({
   },
   entry: {
     deps: './js/deps.js',
+    sw: './js/sw.js',
     app: './js/app.js'
   },
   output: {

@@ -13,7 +13,7 @@ defmodule HoodSavyWeb.Endpoint do
     at: "/",
     from: :hood_savy,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt sw.js cache_manifest.json)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
