@@ -7,6 +7,11 @@ To start your Phoenix server:
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
+To Use self-signed SSL in developement:
+
+  1. run `openssl req -new -x509 -nodes -out dev.crt -keyout priv/cert/dev.key`
+  2. visit `https://localhost:4001`
+
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
