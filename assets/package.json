@@ -6,25 +6,23 @@
     "watch": "webpack --colors --stdin --mode development --watch"
   },
   "dependencies": {
-    "bulma": "^0.8.0",
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
-    "ramda": "^0.26.1"
+    "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "autoprefixer": "^9.7.1",
     "babel-loader": "^8.0.0",
-    "copy-webpack-plugin": "^4.5.0",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^2.1.1",
     "file-loader": "^4.2.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
-    "sass-loader": "^8.0.0",
+    "ramda": "^0.26.1",
     "style-loader": "^1.0.0",
+    "tailwindcss": "^1.1.4",
     "terser-webpack-plugin": "^1.1.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.2.0",
