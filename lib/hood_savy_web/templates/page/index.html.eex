@@ -1,35 +1,28 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
-</section>
-
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
-</section>
+<%= for text <- ["這個好吃", "那邊好玩", "真的不錯"] do %>
+  <div class="flex border rounded my-4 p-2">
+    <div class="flex-col w-10 mr-5">
+      <svg class="stroke-current text-gray-600 h-10 w-10">
+        <use xlink:href="images/feather-sprite.svg#chevron-up"/>
+      </svg>
+      <div class="text-center">
+        42
+      </div>
+      <svg class="stroke-current text-gray-600 h-10 w-10">
+        <use xlink:href="images/feather-sprite.svg#chevron-down"/>
+      </svg>
+    </div>
+    <div class="flex-1 flex-col">
+      <div class="flex justify-between">
+        <div class="inline-block text-2xl mr-4">
+          <%= text %>
+        </div>
+        <div class="inline-block text-sm">
+          Mr. Unknown @ Taipei
+        </div>
+      </div>
+      <div>
+        Excerpts
+      </div>
+    </div>
+  </div>
+<% end %>

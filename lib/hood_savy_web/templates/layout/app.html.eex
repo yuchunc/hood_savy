@@ -6,21 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>HoodSavy · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
   <body>
     <%= render __MODULE__, "nav.html"%>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main" class="container mx-auto px-4">
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/deps.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/js/sw.js')
-          .then(function() { console.log("Service Worker Registered"); });
-      }
+      feather.replace()
     </script>
+    <% if false do %>
+      <script>
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/js/sw.js')
+            .then(function() { console.log("Service Worker Registered"); });
+        }
+      </script>
+    <% end %>
   </body>
 </html>
