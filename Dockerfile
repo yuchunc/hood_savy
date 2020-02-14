@@ -64,4 +64,6 @@ RUN npm install --prefix assets \
 # build mix release
 
 RUN mix phx.digest \
-  && mix release
+  && mix release \
+  && tar cf release-0.1.0.tar _build/prod/rel/hood_savy \
+  && mv release-0.1.0.tar .

@@ -23,3 +23,13 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Building Release
+
+1. Set version number
+2. Run these commands
+  ```
+  docker build -f Dockerfile -t hood_savy .
+  docker run --rm -v /tmp:/app/testing hood_savy bash -c "cp release-<VERSION>.tar /app/testing/"
+  ```
+3. Find your relese in `/tmp`
