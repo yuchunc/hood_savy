@@ -50,6 +50,7 @@ WORKDIR /app
 
 COPY . .
 
+ARG RELEASE_VERSION=0.1.0
 ENV MIX_ENV prod
 
 # install deps
@@ -59,11 +60,10 @@ RUN mix deps.get --only prod
 # install frontend deps
 
 RUN npm install --prefix assets \
-    && npm run deploy --prefix assets
+  && npm run deploy --prefix assets
 
 # build mix release
 
 RUN mix phx.digest \
   && mix release \
-  && tar cf release-0.1.0.tar _build/prod/rel/hood_savy \
-  && mv release-0.1.0.tar .
+  && tar cf release-${RELEASE_VERSION}.tar -C _build/prod/rel/hood_savy .

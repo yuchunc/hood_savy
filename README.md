@@ -27,9 +27,16 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Building Release
 
 1. Set version number
+
+```
+export RELEASE_VERSION=<release version>
+```
+
 2. Run these commands
-  ```
-  docker build -f Dockerfile -t hood_savy .
-  docker run --rm -v /tmp:/app/testing hood_savy bash -c "cp release-<VERSION>.tar /app/testing/"
-  ```
+
+```
+docker build -f Dockerfile -t hood_savy --build-arg RELEASE_VERSION .
+docker run --rm -v /tmp:/app/tmp hood_savy bash -c "cp release-$RELEASE_VERSION.tar /app/tmp/"
+```
+
 3. Find your relese in `/tmp`
