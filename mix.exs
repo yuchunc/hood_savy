@@ -45,10 +45,12 @@ defmodule HoodSavy.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:mix_systemd, "~> 0.7.3", only: :prod},
+      {:mix_deploy, "~> 0.7.5", only: :prod}
     ]
   end
 
