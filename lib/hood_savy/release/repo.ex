@@ -1,4 +1,4 @@
-defmodule HoodSavy.Release do
+defmodule HoodSavy.Release.Repo do
   @app :hood_savy
 
   def migrate do
