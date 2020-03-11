@@ -4,27 +4,19 @@
 # remember to add this file to your .gitignore.
 import Config
 
-# database_url =
-#   System.get_env("DATABASE_URL") ||
-#     raise """
-#     environment variable DATABASE_URL is missing.
-#     For example: ecto://USER:PASS@HOST/DATABASE
-#     """
-
-db_host = System.get_env("DB_HOST")
-db_user = System.get_env("DB_USER")
-db_pw = System.get_env("DB_USER")
+database_url =
+  System.get_env("DATABASE_URL") ||
+    raise """
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
+    """
 
 config :hood_savy, HoodSavy.Repo,
-  # url: database_url,
-  username: System.get_env("DB_USER"),
-  password: System.get_env("DB_PW"),
-  database: "hood_savy_prod",
-  hostname: System.get_env("DB_HOST"),
+  url: database_url,
   pool_size: String.to_integer(System.get_env("DB_POOL") || "10")
 
 secret_key_base =
-  System.get_env("SECRET_KEY") ||
+  System.get_env("SECRET_KEY_BASE") ||
     raise """
     environment variable SECRET_KEY_BASE is missing.
     You can generate one by calling: mix phx.gen.secret

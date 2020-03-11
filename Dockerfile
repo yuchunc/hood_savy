@@ -65,5 +65,7 @@ RUN npm install --prefix assets \
 # build mix release
 
 RUN mix phx.digest \
+  && mix systemd.generate \
   && mix release \
+  && cp _build/prod/systemd/lib/systemd/system/hood-savy.service _build/prod/rel/hood_savy \
   && tar cf release-${RELEASE_VERSION}.tar -C _build/prod/rel/hood_savy .

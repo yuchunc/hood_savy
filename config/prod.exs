@@ -16,6 +16,14 @@ config :hood_savy, HoodSavyWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :mix_systemd,
+  app_user: "app",
+  app_group: "app",
+  base_dir: "/srv",
+  env_files: [
+    ["/etc/hood-savy/environment"]
+  ]
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
