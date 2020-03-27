@@ -20,6 +20,7 @@ config :mix_systemd,
   app_user: "app",
   app_group: "app",
   base_dir: "/srv",
+  output_dir: "rel/overlays",
   env_files: [
     ["/etc/hood-savy/environment"]
   ]

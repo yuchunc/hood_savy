@@ -25,22 +25,19 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Source: https://github.com/phoenixframework/phoenix
 
 ## Deployment
+
+Here's my [blog post](https://rustyfinger.com/deploying-phoenix-to-ten-dollar-setup)
+
 ### Building Release
 
-1. Set version number
+1. Run these commands
 
 ```
-export RELEASE_VERSION=<release version>
+docker build -t hood_savy .
+docker run --rm -v /tmp:/app/tmp hood_savy bash -c "cp release.tar.gz /app/tmp/"
 ```
 
-2. Run these commands
-
-```
-docker build -f Dockerfile -t hood_savy --build-arg RELEASE_VERSION .
-docker run --rm -v /tmp:/app/tmp hood_savy bash -c "cp release-$RELEASE_VERSION.tar /app/tmp/"
-```
-
-3. Find your relese in `/tmp`
+2. Find your relese in `/tmp`
 
 ### Create Your DB Instance
 
@@ -62,11 +59,8 @@ new_release_dir=$(date +%G%m%d%H%M)
 release_dir="${project_root}/versions/${new_release_dir}"
 
 mkdir -p ${release_dir}
-
 tar -C "${release_dir}" -xf release-0.1.0.tar
-
 ln -sfn ${release_dir} ${project_root}/current
-
 cp ${project_root}/current/hood-savy.service /lib/systemd/system/
 
 chown -R app:app ${project_root}
