@@ -23,3 +23,74 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Deployment
+
+Here's my [blog post](https://rustyfinger.com/deploying-phoenix-to-ten-dollar-setup)
+
+### Building Release
+
+1. Run these commands
+
+```
+docker build -t hood_savy .
+docker run --rm -v /tmp:/app/tmp hood_savy bash -c "cp release.tar.gz /app/tmp/"
+```
+
+2. Find your relese in `/tmp`
+
+### Create Your DB Instance
+
+- Remember to write down Host, User, Password, DB
+
+### Run Your Release
+
+1. Copy release to server.
+
+2. Run `sudo ./deploy.sh`
+
+Below is a version of `./deploy.sh`.
+
+```
+#! /bin/bash
+
+project_root="/srv/hood-savy"
+new_release_dir=$(date +%G%m%d%H%M)
+release_dir="${project_root}/versions/${new_release_dir}"
+
+mkdir -p ${release_dir}
+tar -C "${release_dir}" -xf release-0.1.0.tar
+ln -sfn ${release_dir} ${project_root}/current
+cp ${project_root}/current/hood-savy.service /lib/systemd/system/
+
+chown -R app:app ${project_root}
+systemctl daemon-reload
+```
+
+3. Create ENV configs
+
+```
+sudo touch /etc/hood-savy/environment
+sudo echo -e "SECRET_KEY_BASE=<NEW KEY>" >> /etc/hood-savy/environment
+sudo echo -e "DATABASE_URL=ecto://<DB User>:<DB PW>@<DB Host>/<Database>" >> /etc/hood-savy/environment
+```
+
+4. Start Service
+
+```
+sudo systemctl restart hood-savy
+```
+
+5. Forward PORT 80 to 4000
+
+```
+sudo iptables -A INPUT -p tcp --dport 4000 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 4000 -m state --state NEW \
+    -m hashlimit --hashlimit-name HTTP --hashlimit 5/minute \
+    --hashlimit-burst 10 --hashlimit-mode srcip --hashlimit-htable-expire 300000 -j ACCEPT
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 4000
+```
+
+> Copied from https://www.cogini.com/blog/port-forwarding-with-iptables/
+
+## Profit!!

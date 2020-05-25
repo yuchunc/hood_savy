@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
@@ -15,6 +15,15 @@ config :hood_savy, HoodSavyWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :mix_systemd,
+  app_user: "app",
+  app_group: "app",
+  base_dir: "/srv",
+  output_dir: "rel/overlays",
+  env_files: [
+    ["/etc/hood-savy/environment"]
+  ]
 
 # ## SSL Support
 #
@@ -52,4 +61,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"

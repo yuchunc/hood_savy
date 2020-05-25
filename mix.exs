@@ -9,8 +9,18 @@ defmodule HoodSavy.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
+      # include all artifact in to release, instead of symlink
+      build_embedded: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: [
+        hood_savy: [
+          include_executables_for: [:unix],
+          applications: [runtime_tools: :permanent],
+          # https://hexdocs.pm/mix/Mix.Tasks.Release.html
+          steps: [:assemble, :tar]
+        ]
+      ]
     ]
   end
 
@@ -39,10 +49,12 @@ defmodule HoodSavy.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      # {:mix_systemd, "~> 0.7.3", only: :prod}
+      {:mix_systemd, github: "cogini/mix_systemd"}
     ]
   end
 
