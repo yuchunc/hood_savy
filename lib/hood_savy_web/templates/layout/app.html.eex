@@ -11,7 +11,7 @@
   <body>
     <%= render __MODULE__, "nav.html"%>
     <main role="main" class="container mx-auto px-4">
-      <%= render @view_module, @view_template, assigns %>
+      <%= @inner_content %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/deps.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
