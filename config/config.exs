@@ -15,7 +15,7 @@ config :hood_savy, HoodSavyWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "iLipwZ73HpJxkUglkncIyOwVv5MJHdaz81m1LYZdHCnUBvyAOPojpyjvFduByrJN",
   render_errors: [view: HoodSavyWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: HoodSavy.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: HoodSavy.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

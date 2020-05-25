@@ -17,12 +17,12 @@ config :hood_savy, HoodSavy.Repo,
 # with webpack to recompile .js and .css sources.
 config :hood_savy, HoodSavyWeb.Endpoint,
   http: [port: 4000],
-  https: [
-    port: 4001,
-    cipher_suite: :strong,
-    certfile: "priv/cert/dev.crt",
-    keyfile: "priv/cert/dev.key"
-  ],
+  # https: [
+  #   port: 4001,
+  #   cipher_suite: :strong,
+  #   certfile: "priv/cert/dev.crt",
+  #   keyfile: "priv/cert/dev.key"
+  # ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
