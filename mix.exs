@@ -53,6 +53,7 @@ defmodule HoodSavy.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       # {:mix_systemd, "~> 0.7.3", only: :prod}
       {:mix_systemd, github: "cogini/mix_systemd"}
     ]

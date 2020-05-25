@@ -11,9 +11,10 @@ defmodule HoodSavy.Application do
       # Start the Ecto repository
       HoodSavy.Repo,
       # Start the endpoint when the application starts
-      HoodSavyWeb.Endpoint
+      HoodSavyWeb.Endpoint,
       # Starts a worker by calling: HoodSavy.Worker.start_link(arg)
       # {HoodSavy.Worker, arg},
+      {Phoenix.PubSub, [name: HoodSavy.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
